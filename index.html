@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comfortable Discomfort — Mykola Sedletskyi</title>
+  <meta name="description" content="A book and essay project about keeping the mind alive in an age of ease." />
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --paper: #fffdfa;
+      --ink: #1f1b16;
+      --muted: #6b645c;
+      --line: #ddd3c6;
+      --accent: #5f4b32;
+      --accent-2: #8c6a43;
+      --shadow: 0 10px 30px rgba(31, 27, 22, 0.08);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(140,106,67,0.10), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(95,75,50,0.08), transparent 30%),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      padding: 22px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(247, 243, 236, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(221, 211, 198, 0.75);
+      z-index: 20;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav a {
+      text-decoration: none;
+    }
+
+    .hero {
+      padding: 72px 0 42px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,253,250,0.95), rgba(255,250,245,0.95));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: calc(var(--radius) + 6px);
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 28px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      color: var(--accent-2);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 54ch;
+      margin: 0 0 24px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 13px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.98rem;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #fffdf9;
+    }
+
+    .btn.secondary {
+      color: var(--accent);
+      background: transparent;
+    }
+
+    .quote-box,
+    .card,
+    .excerpt,
+    .footer-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .quote-box {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .quote-box p {
+      margin: 0;
+      font-size: 1.15rem;
+      line-height: 1.55;
+    }
+
+    .quote-box .source {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .section {
+      padding: 28px 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      line-height: 1.1;
+    }
+
+    .section-note {
+      color: var(--muted);
+      max-width: 56ch;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .meta {
+      margin-top: 14px;
+      font-size: 0.92rem;
+      color: var(--accent-2);
+    }
+
+    .excerpt {
+      padding: 26px;
+    }
+
+    .excerpt p {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .footer {
+      padding: 36px 0 70px;
+    }
+
+    .footer-card {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .footer-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.92rem;
+      color: var(--muted);
+      background: rgba(255,255,255,0.5);
+    }
+
+    @media (max-width: 920px) {
+      .hero-card,
+      .grid,
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 28px;
+      }
+
+      h1 { font-size: clamp(2.2rem, 11vw, 3.7rem); }
+    }
+
+    @media (max-width: 560px) {
+      .topbar-inner,
+      .section-header {
+        display: block;
+      }
+
+      .nav {
+        margin-top: 10px;
+      }
+
+      .hero { padding-top: 42px; }
+      .hero-card { padding: 22px; }
+      .card, .excerpt, .quote-box, .footer-card { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">Mykola Sedletskyi</div>
+      <nav class="nav">
+        <a href="#book">Book</a>
+        <a href="#essay">Essay</a>
+        <a href="#excerpt">Excerpt</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-card">
+        <div>
+          <div class="eyebrow">Book + essay project</div>
+          <h1>Comfortable<br>Discomfort</h1>
+          <p class="subtitle">
+            A short philosophy of how to keep the mind alive in an age of convenience, smoothness, and increasingly optional effort.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="/comfortable_discomfort_book.pdf">Get the book</a>
+            <a class="btn secondary" href="https://medium.com/@nikolaysedletskiy/ai-should-not-make-us-mentally-softer-cdabab56dc07">Read the essay</a>
+          </div>
+          <div class="pill-list">
+            <span class="pill">Mind</span>
+            <span class="pill">Effort</span>
+            <span class="pill">Aging</span>
+            <span class="pill">AI</span>
+            <span class="pill">Modern life</span>
+          </div>
+        </div>
+        <aside class="quote-box">
+          <p>
+            “Do not confuse a smooth life with a living one.”
+          </p>
+          <div class="source">From <em>Comfortable Discomfort</em></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="book">
+      <div class="wrap">
+        <div class="grid">
+          <article class="card">
+            <h3>What it argues</h3>
+            <p>
+              Comfort is necessary, but too much of it can quietly flatten attention, courage, range, and the mind’s habit of adaptation.
+            </p>
+          </article>
+          <article class="card">
+            <h3>What it covers</h3>
+            <p>
+              Cognitive aging, neuroplasticity, movement, friendship, chosen difficulty, second acts, and how AI can either deepen thought or sedate it.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Who it is for</h3>
+            <p>
+              Readers interested in philosophy, self-development without cliché, modern psychology, and practical ways to stay mentally alive.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="essay">
+      <div class="wrap">
+        <article class="card">
+          <h3>AI Should Not Make Us Mentally Softer</h3>
+          <p>
+            A compact version of the argument for readers who want the central idea first.
+          </p>
+          <div class="meta">
+            <a href="https://medium.com/@nikolaysedletskiy/ai-should-not-make-us-mentally-softer-cdabab56dc07">Open the Medium article →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="excerpt">
+      <div class="wrap">
+        <div class="excerpt">
+          <p>
+            Most people are not ruined by dramatic catastrophe. More often they are softened by what looks, from the outside, like a very reasonable life.
+          </p>
+          <p>
+            Things get cleaner. More efficient. Less embarrassing. Less physically demanding. Less cognitively expensive. A person calls it stability. Friends call it maturity.
+          </p>
+          <p>
+            The point is not to glorify pain. The point is to remember that the human system is adaptive. Whatever it is no longer asked to do, it gradually stops preparing for.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="about">
+          <article class="card">
+            <h3>About the author</h3>
+            <p>
+              Mykola Sedletskyi writes about technology, human cognition, modern life, and the kinds of structure that help people stay sharp without becoming rigid.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Links</h3>
+            <p>
+              Add your GitHub, Medium, LinkedIn, X, or email here.
+            </p>
+            <div class="meta">
+              <a href="https://www.linkedin.com/in/mykola-sedletskyi/">LinkedIn</a> ·
+              <a href="https://github.com/icevita">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
